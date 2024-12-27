@@ -40,8 +40,8 @@ bash ./samCRISPR.sh \
 ```
 
 Of note: 
-  1. The bam file is aligned to UCSC mm10 genome.
-  2. bed file of sgRNA should specify strand of DNA (either forward or reverse) where sgRNA of interest binds to.
+-  1. The bam file is aligned to UCSC mm10 genome.
+-  2. bed file of sgRNA should specify strand of DNA (either forward or reverse) where sgRNA of interest binds to.
 
 ### Cite samCRISPR
 'It will be added soon'
