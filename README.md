@@ -47,4 +47,4 @@ Limitation:
 
 
 ### Cite samCRISPR
-'It will be added soon'
+'It will be added soon.'
