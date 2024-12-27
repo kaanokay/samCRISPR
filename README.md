@@ -18,7 +18,7 @@ wget https://github.com/kaanokay/samCRISPR/blob/main/script/samCRISPR.sh
 chmod u+x samCRISPR.sh
 ```
 
-Then, you can directly execute the script with --help option for a complete list of options.
+Then, you can directly execute the script with --help argument for a complete list of options.
 ```{bash}
 bash ./samCRISPR.sh --help
 ```
