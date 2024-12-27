@@ -41,6 +41,7 @@ bash ./samCRISPR.sh \
 
 Of note
 -  The bed file of sgRNA should contain strand of DNA (either forward or reverse) where sgRNA of interest binds to.
+-  To seek CRISPR events a bit more far from cut site, user can extend sgRNA coordinates in bed file up to 5-10 bps.
  
 Limitation:
 -  It is highly recommended to consider CRISPR events that occur in the interval a few bp away from the cut site. The tool is currently incapable of identifying CRISPR events that are more far.
