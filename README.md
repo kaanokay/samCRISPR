@@ -42,8 +42,8 @@ bash ./samCRISPR.sh \
 Of note
 -  The bed file of sgRNA should specify strand of DNA (either forward or reverse) where sgRNA of interest binds to.
  
-Warning:
--  It is highly recommended to consider CRISPR events that occur in the interval a few bp away from the cut site. The tool is currently incapable of identifying CRISPR events that are more distant.
+Limitation:
+-  It is highly recommended to consider CRISPR events that occur in the interval a few bp away from the cut site. The tool is currently incapable of identifying CRISPR events that are more far.
 
 
 ### Cite samCRISPR
