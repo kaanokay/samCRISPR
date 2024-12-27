@@ -43,7 +43,7 @@ Of note
 -  The 4th column of sgRNA bed file should contain strand of DNA (either forward or reverse) where sgRNA of interest binds to.
  
 Limitation:
--  It is highly recommended to consider CRISPR events that occur in the interval a few bp away from the cut site. The tool is currently incapable of identifying CRISPR events that are more far.
+-  It is highly recommended to consider CRISPR events that occur in the interval a few bp away from the cut site. The tool is currently incapable of identifying CRISPR events that are more far. This also means that sgRNA bed file should be limited to only exact sgRNA coordinates.
 
 
 ### Cite samCRISPR
