@@ -4,4 +4,5 @@
 
 ### Dependencies
 In order to run samCRISPR the following software components and packages are required:
-- samtools >= v???
+- SAMtools >= v1.21
+- Linux environment
