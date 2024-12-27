@@ -20,7 +20,7 @@ chmod u+x samCRISPR.sh
 
 Then, you can directly execute the script:
 ```{bash}
-./samCRISPR.sh --help
+bash ./samCRISPR.sh --help
 ```
 
 To download the entire repository, which includes the dockerfile and example files:
