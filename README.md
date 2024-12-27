@@ -1,1 +1,3 @@
-### Repository for knockout efficiency estimation of ONT WGS data sets
+### samCRIPSR
+
+#### Repository for knockout efficiency estimation of ONT WGS data sets
