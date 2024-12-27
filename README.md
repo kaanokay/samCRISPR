@@ -1,3 +1,3 @@
 ### samCRIPSR
 
-#### Repository for knockout efficiency estimation of ONT WGS data sets
+##### Command-line tool for estimation of knockout efficiency in long-read whole genome sequencing
