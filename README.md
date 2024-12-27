@@ -33,10 +33,10 @@ Execute the script with --help option for a complete list of options. Sample dat
 
 ```{bash}
 bash ./samCRISPR \
---sgRNA sgRNAs.bed \
---reference genome.fa \
---bam bam.files.txt \
---quantification-window 1
+--sgRNA sgRNAs.bed \ # coordinates of each sgRNA in corresponding genome
+--reference genome.fa \ # corresponding reference genome FASTA file
+--bam bam.files.txt \ # a text file where each row contains path of individual bam file
+--quantification-window 1 # interval for seeking CRISPR events: how many basepairs upstream and downstream away from the cut site (default is 1)
 ```
 
 To download mouse or human reference genomes from UCSC:
