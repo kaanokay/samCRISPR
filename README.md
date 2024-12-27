@@ -1,3 +1,9 @@
 ### samCRIPSR
 
 ##### Command-line tool for estimation of knockout efficiency in long-read whole genome sequencing
+
+&ensp; **[Dependencies](#dependencies)**<br>
+
+##### Dependencies
+In order to run samCRISPR the following software components and packages are required:
+- samtools >= v???
