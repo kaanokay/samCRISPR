@@ -22,3 +22,8 @@ Then, you can directly execute the script:
 ```{bash}
 ./samCRISPR.sh --help
 ```
+
+To download the entire repository, which includes the dockerfile and example files:
+```{bash}
+git clone https://github.com/kaanokay/samCRISPR.git
+```
