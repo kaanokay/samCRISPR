@@ -1,4 +1,4 @@
-# samCRIPSR
+# samCRISPR
 
 Command-line tool for estimation of knockout efficiency in long-read whole genome sequencing
 
@@ -30,6 +30,14 @@ git clone https://github.com/kaanokay/samCRISPR.git
 
 ### Usage
 Execute the script with --help option for a complete list of options. Sample data and usage examples can be found at directory data and directory examples, respectively.
+
+```{bash}
+$ bash ./samCRISPR \
+--sgRNA sgRNAs.bed \
+--reference genome.fa \
+--bam bam.files.txt \
+--quantification-window 1
+```
 
 ### Cite samCRISPR
 'It will be added soon'
