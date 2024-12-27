@@ -31,8 +31,6 @@ git clone https://github.com/kaanokay/samCRISPR.git
 ### Usage
 Execute the script with --help option for a complete list of options. Sample data and output examples can be found at data and examples, respectively.
 
-Of note: bam file is aligned to UCSC mm10 genome.
-
 ```{bash}
 bash ./samCRISPR.sh \
 --sgRNA sgRNAs.bed \ # coordinates of each sgRNA in corresponding genome
@@ -41,11 +39,9 @@ bash ./samCRISPR.sh \
 --quantification-window 1 # interval for seeking CRISPR events: how many basepairs upstream and downstream away from the cut site (default is 1)
 ```
 
-To download mouse or human reference genome from UCSC:
-```{bash}
-wget -c https://hgdownload.soe.ucsc.edu/goldenPath/mm10/bigZips/mm10.fa.gz # mm10 genome
-wget -c https://hgdownload.soe.ucsc.edu/goldenPath/hg38/bigZips/hg38.fa.gz # hg38 genome
-```
+Of note: 
+- 1. The bam file is aligned to UCSC mm10 genome.
+  2. bed file of sgRNA should specify strand of DNA (either forward or reverse) where sgRNA of interest binds to
 
 ### Cite samCRISPR
 'It will be added soon'
