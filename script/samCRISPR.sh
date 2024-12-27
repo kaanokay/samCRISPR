@@ -16,14 +16,14 @@ if [[ "$1" == "--help" ]]; then
     exit 0
 fi
 
-# Step 1. Initialize variables for samtools mpileup parameters
+# Initialize variables for samtools mpileup parameters
 reference=""
 bam_list=""  # Changed from 'bam' to 'bam_list' to indicate it's a list (file) of BAM paths
 sgRNA=""
 quantification_window=1 # Default quantification window size
 output_file="knockout_efficiency_results.txt"
 
-# Step 2. Parse command-line arguments
+# Parse command-line arguments
 while [[ "$#" -gt 0 ]]; do
     case $1 in
         --sgRNA) sgRNA="$2"; shift ;;
