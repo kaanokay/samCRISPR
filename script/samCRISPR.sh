@@ -1,5 +1,21 @@
 #!/bin/bash
 
+# Help message
+
+if [[ "$1" == "--help" ]]; then
+    echo "Usage: ./samCRISPR.sh [OPTIONS]"
+    echo "Options:"
+    echo "  --sgRNA                    File containing sgRNA locations in the bed format: chr start end strand name"
+    echo "  --reference | --ref        Reference genome file in FASTA format"
+    echo "  --bam                      File containing paths to BAM files, one per line"
+    echo "  --quantification-window    Size of the quantification window (default: 1)"
+    echo
+    echo "Example:"
+    echo
+    echo "  ./samCRISPR.sh --sgRNA sgRNA_locations.bed --reference genome.fa --bam bam_list.txt --quantification-window 1"
+    exit 0
+fi
+
 # Step 1. Initialize variables for samtools mpileup parameters
 reference=""
 bam_list=""  # Changed from 'bam' to 'bam_list' to indicate it's a list (file) of BAM paths
