@@ -39,9 +39,12 @@ bash ./samCRISPR.sh \
 --quantification-window 1 # interval for seeking CRISPR events: how many basepairs upstream and downstream away from the cut site (default is 1)
 ```
 
-Of note: 
--  1. The bam file is aligned to UCSC mm10 genome.
--  2. bed file of sgRNA should specify strand of DNA (either forward or reverse) where sgRNA of interest binds to.
+Of note
+-  The bed file of sgRNA should specify strand of DNA (either forward or reverse) where sgRNA of interest binds to.
+ 
+Warning:
+-  It is highly recommended to consider CRISPR events that occur in the interval a few bp away from the cut site. The tool is currently incapable of identifying CRISPR events that are more distant.
+
 
 ### Cite samCRISPR
 'It will be added soon'
