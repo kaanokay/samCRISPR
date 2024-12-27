@@ -32,7 +32,7 @@ git clone https://github.com/kaanokay/samCRISPR.git
 Execute the script with --help option for a complete list of options. Sample data and usage examples can be found at directory data and directory examples, respectively.
 
 ```{bash}
-bash ./samCRISPR \
+bash ./samCRISPR.sh \
 --sgRNA sgRNAs.bed \ # coordinates of each sgRNA in corresponding genome
 --reference genome.fa \ # corresponding reference genome FASTA file (uncompressed)
 --bam bam.files.txt \ # a text file where each row contains path of individual bam file
