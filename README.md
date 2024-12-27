@@ -30,3 +30,6 @@ git clone https://github.com/kaanokay/samCRISPR.git
 
 ### Usage
 Execute the script with --help option for a complete list of options. Sample data and usage examples can be found at directory data and directory examples, respectively.
+
+### Cite samCRISPR
+'it will be added soon'
