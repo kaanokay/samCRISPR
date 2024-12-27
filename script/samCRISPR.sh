@@ -149,10 +149,12 @@ echo "Knockout efficiency: $Knockout_efficiency%"
 echo -e "$(basename $bam_basename)\t$name\t$number_of_modified_reads\t$total_number_of_reads\t$Knockout_efficiency%" >> "$output_file"
         
 
-    done < "$sgRNA"
+    done < "$sgRNA" # End of inner loop for sgRNA processing
 
-done < "$bam_list"
+done < "$bam_list" # End of outer loop for BAM file processing
 
+# Remove intermediate files for the current BAM file
 
-rm quantification_window_subset_mpileup.txt
-rm quantification.window.coverage.txt
+rm -f *_samtools_mpileup.txt
+rm -f quantification_window_subset_mpileup.txt
+rm -f quantification.window.coverage.txt
