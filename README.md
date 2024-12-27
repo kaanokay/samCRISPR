@@ -39,5 +39,11 @@ $ bash ./samCRISPR \
 --quantification-window 1
 ```
 
+To download mouse or human reference genomes from UCSC:
+```{bash}
+wget -c https://hgdownload.soe.ucsc.edu/goldenPath/mm10/bigZips/mm10.fa.gz # mm10 genome
+wget -c https://hgdownload.soe.ucsc.edu/goldenPath/hg38/bigZips/hg38.fa.gz # hg38 genome
+```
+
 ### Cite samCRISPR
 'It will be added soon'
