@@ -35,9 +35,9 @@ Sample data and output examples can be found at data and examples, respectively.
 
 ```{bash}
 bash ./samCRISPR.sh \
---sgRNA sgRNAs.bed \ # coordinates of each sgRNA in corresponding genome
---reference genome.fa \ # corresponding reference genome FASTA file (uncompressed)
---bam bam.files.txt \ # a text file where each row contains path of individual bam file (should be indexed by SAMtools)
+--sgRNA path/to/sgRNAs.bed \ # path to bed file containing coordinates of each sgRNA in corresponding genome
+--reference path/to/genome.fa \ # path to corresponding reference genome FASTA file (uncompressed)
+--bam path/to/bam.files.txt \ # path to a text file where each row contains path of individual bam file (should be indexed by SAMtools)
 --quantification-window 1 # interval for seeking CRISPR events: how many basepairs upstream and downstream away from the cut site (default is 1)
 ```
 
