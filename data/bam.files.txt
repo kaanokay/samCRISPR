@@ -1,1 +1,1 @@
-Kmt2a.knockout.bam
+samCRISPR/data/Kmt2a.knockout.bam
