@@ -44,7 +44,7 @@ fi
 
 
 # Initialize the output file and write the header
-echo -e "Bam_file\tsgRNA\tNumber_of_modified_reads\tCoverage\tKnockout_efficiency" > "$output_file"
+echo -e "Bam_file\tsgRNA\tNumber_of_modified_reads\tCoverage\tKnockout_efficiency\tlower_ci\tupper_ci" > "$output_file"
 
 
 # Ensure the associative array is declared before the loops
@@ -81,9 +81,9 @@ while read -r bam_file; do
             fi
             
             # Extract and print the CRISPR cut site line
-            cut_site_content=$(sed "${cut_site_line}q;d" "$samtools_mpileup_output")
-            echo "CRISPR cut site for $name at ${sgRNA_genomic_location} for ${bam_basename}  (strand: $strand):"
-            echo "$cut_site_content"
+            # cut_site_content=$(sed "${cut_site_line}q;d" "$samtools_mpileup_output")
+            # echo "CRISPR cut site for $name at ${sgRNA_genomic_location} for ${bam_basename}  (strand: $strand):"
+            # echo "$cut_site_content"
         else
             echo "Target coordinate $target_coordinate for $name at ${sgRNA_genomic_location} not found in mpileup output."
         fi
@@ -99,7 +99,7 @@ while read -r bam_file; do
             window_start=$(( window_start < 1 ? 1 : window_start ))
             window_end=$(( window_end > total_lines ? total_lines : window_end ))
 
-            echo "Quantification window for $name in $bam_basename from line $window_start to $window_end"
+            # echo "Quantification window for $name in $bam_basename from line $window_start to $window_end"
             
             
         # Count CRISPR edit indicators within the quantification window directly from the mpileup output
@@ -126,7 +126,7 @@ while read -r bam_file; do
 
         # Calculate total edits
         number_of_modified_reads=$((end_of_reads_with_large_indels + start_of_reads_with_large_indels + deletions + insertions + substitutions))
-        echo "Number of modified reads for $name in $bam_basename: $number_of_modified_reads"
+        # echo "Number of modified reads for $name in $bam_basename: $number_of_modified_reads"
         
         
         
@@ -144,11 +144,11 @@ chromosome=$(head -n 1 quantification.window.coverage.txt | awk '{print $1}')
 
 # Construct the region string
 coverage_region="${chromosome}:${start_coord}-${end_coord}"
-echo "Quantification window region: $coverage_region"
+# echo "Quantification window region: $coverage_region"
 
 # Use samtools coverage to calculate coverage for the quantification window region
 total_number_of_reads=$(samtools coverage --region "$coverage_region" "$bam_file" | awk 'NR>1 {print $4}')
-echo "Total number of reads around quantification window: $total_number_of_reads"
+# echo "Total number of reads around quantification window: $total_number_of_reads"
 
 
 
@@ -156,13 +156,42 @@ echo "Total number of reads around quantification window: $total_number_of_reads
 # Calculate knockout efficiency: total number of reads with CRISPR event/total number of reads
 
 Knockout_efficiency=$(echo "scale=4; ($number_of_modified_reads/$total_number_of_reads) *100" | bc | sed 's/\.\?0*$//')
-echo "Knockout efficiency: $Knockout_efficiency%"
-        
+# echo "Knockout efficiency: $Knockout_efficiency%"
+
+
+# Calculate a 95% binomial confidence interval for knockout efficiency
+
+# Calculate the proportion p using awk for floating point arithmetic
+p=$(awk -v mod="$number_of_modified_reads" -v tot="$total_number_of_reads" 'BEGIN {
+    printf "%.10f", mod / tot
+}')
+
+# For a 95% confidence interval, the critical value qnorm(0.975) is ~1.959964.
+qnorm=1.959964
+
+# Compute the standard error using the formula: sqrt((1/100)*p*(1-p))
+sqrt_val=$(awk -v p="$p" 'BEGIN {
+    printf "%.10f", sqrt((1/100.0) * p * (1 - p))
+}')
+
+# Calculate the lower and upper bounds of the confidence interval
+lower_ci=$(awk -v p="$p" -v q="$qnorm" -v s="$sqrt_val" 'BEGIN {
+    printf "%.7f", p - q * s
+}')
+upper_ci=$(awk -v p="$p" -v q="$qnorm" -v s="$sqrt_val" 'BEGIN {
+    printf "%.7f", p + q * s
+}')
+
+
+# Multiply the lower and upper bounds by 100 to express them as percentages
+# formatted to two decimals.
+lower_perc=$(awk -v l="$lower_ci" 'BEGIN {printf "%.2f", l * 100}')
+upper_perc=$(awk -v u="$upper_ci" 'BEGIN {printf "%.2f", u * 100}')
 
 
 # Write the results to the output file
 
-echo -e "$(basename $bam_basename)\t$name\t$number_of_modified_reads\t$total_number_of_reads\t$Knockout_efficiency%" >> "$output_file"
+echo -e "$(basename $bam_basename)\t$name\t$number_of_modified_reads\t$total_number_of_reads\t$Knockout_efficiency\t$lower_perc\t$upper_perc" >> "$output_file"
         
 
     done < "$sgRNA" # End of inner loop for sgRNA processing
