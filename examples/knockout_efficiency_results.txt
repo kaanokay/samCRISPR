@@ -1,2 +1,2 @@
-Bam_file	sgRNA	Number_of_modified_reads	Coverage	Knockout_efficiency
-Kmt2a.knockout  Kmt2a_sgRNA 11  26  42.3%
+Bam_file	sgRNA	Number_of_modified_reads	Coverage	Knockout_efficiency	lower_ci	upper_ci
+Kmt2a.knockout	Kmt2a_sgRNA.1	6	25	24	15.63	32.37
