@@ -159,39 +159,29 @@ Knockout_efficiency=$(echo "scale=4; ($number_of_modified_reads/$total_number_of
 # echo "Knockout efficiency: $Knockout_efficiency%"
 
 
-# Calculate a 95% binomial confidence interval for knockout efficiency
+# Calculate a 95% binomial proportion confidence interval for knockout efficiency (Wilson score interval)
 
-# Calculate the proportion p using awk for floating point arithmetic
-p=$(awk -v mod="$number_of_modified_reads" -v tot="$total_number_of_reads" 'BEGIN {
-    printf "%.10f", mod / tot
-}')
+p=$(echo "scale=10; $number_of_modified_reads / $total_number_of_reads" | bc) # proportion of modifications
+n=$total_number_of_reads
+alpha=0.05 # 95% confidence interval
 
-# For a 95% confidence interval, the critical value qnorm(0.975) is ~1.959964.
-qnorm=1.959964
+CI=$(Rscript -e "
+p <- $p
+n <- $n
+alpha <- $alpha
+z <- abs(qnorm((1 - alpha) / 2, mean = 0, sd = 1))
+ci_upper <- ((p + z^2 / (2 * n) + z * sqrt((p * (1 - p) + z^2 / (4 * n)) / n)) / (1 + z^2 / n))*100
+ci_lower <- ((p + z^2 / (2 * n) - z * sqrt((p * (1 - p) + z^2 / (4 * n)) / n)) / (1 + z^2 / n))*100
+cat(ci_lower, ci_upper)
+")
 
-# Compute the standard error using the formula: sqrt((1/100)*p*(1-p))
-sqrt_val=$(awk -v p="$p" 'BEGIN {
-    printf "%.10f", sqrt((1/100.0) * p * (1 - p))
-}')
-
-# Calculate the lower and upper bounds of the confidence interval
-lower_ci=$(awk -v p="$p" -v q="$qnorm" -v s="$sqrt_val" 'BEGIN {
-    printf "%.7f", p - q * s
-}')
-upper_ci=$(awk -v p="$p" -v q="$qnorm" -v s="$sqrt_val" 'BEGIN {
-    printf "%.7f", p + q * s
-}')
-
-
-# Multiply the lower and upper bounds by 100 to express them as percentages
-# formatted to two decimals.
-lower_perc=$(awk -v l="$lower_ci" 'BEGIN {printf "%.2f", l * 100}')
-upper_perc=$(awk -v u="$upper_ci" 'BEGIN {printf "%.2f", u * 100}')
-
+# Extract the lower and upper CI values from R output
+ci_lower=$(echo $CI | awk '{print $1}')
+ci_upper=$(echo $CI | awk '{print $2}')
 
 # Write the results to the output file
 
-echo -e "$(basename $bam_basename)\t$name\t$number_of_modified_reads\t$total_number_of_reads\t$Knockout_efficiency\t$lower_perc\t$upper_perc" >> "$output_file"
+echo -e "$(basename $bam_basename)\t$name\t$number_of_modified_reads\t$total_number_of_reads\t$Knockout_efficiency\t$ci_lower\t$ci_upper" >> "$output_file"
         
 
     done < "$sgRNA" # End of inner loop for sgRNA processing
