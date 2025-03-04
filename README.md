@@ -6,7 +6,7 @@ This tool is able to process multiple BAM files for multiple sgRNAs to detect CR
 
 ### Dependencies
 In order to run samCRISPR the following software components and packages are required:
-- SAMtools >= v1.21
+- SAMtools >=1.21
 - R computing environment >=4.4.2
 - Linux environment
 
