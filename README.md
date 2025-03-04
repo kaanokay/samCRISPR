@@ -50,3 +50,5 @@ Limitation:
 
 ### Cite samCRISPR
 'It will be added soon.'
+
+### Of note; keep script and data in different directories and specify path of data.
