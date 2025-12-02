@@ -52,4 +52,4 @@ Limitation:
 ### Cite samCRISPR
 https://doi.org/10.1101/2025.09.12.675897.
 
-### Of note; keep script and data in different directories and specify path of data.
+#### Of note; keep script and data in different directories and specify path of data.
