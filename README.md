@@ -42,7 +42,7 @@ bash ./samCRISPR.sh \
 --quantification-window 1 # interval for seeking CRISPR events: how many basepairs upstream and downstream away from the cut site (default is 1)
 ```
 
-Of note
+Note/
 -  The 4th column of sgRNA bed file should contain a string specifying what strand of DNA (either forward or reverse) sgRNA of interest binds to.
  
 Limitation:
