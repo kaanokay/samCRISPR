@@ -1,10 +1,6 @@
 # samCRISPR
 
-Command-line tool for estimation of knockout efficiency in long-read whole genome sequencing. 
-
-samCRISPR is able to process multiple BAM files for multiple sgRNAs to detect CRISPR events around cut site of Cas9 in target region.
-
-samCRISPR calculates Wilson score confidence intervals for knockout efficiency.
+Command-line tool for estimation of knockout efficiency in long-read whole genome sequencing. The samCRISPR is able to process multiple BAM files for multiple sgRNAs to detect CRISPR events around cut site of Cas9 in target region. The samCRISPR calculates Wilson score confidence intervals for knockout efficiency.
 
 ### Dependencies
 In order to run samCRISPR the following software components and packages are required:
