@@ -52,4 +52,4 @@ Limitation:
 ### Cite samCRISPR
 https://doi.org/10.1101/2025.09.12.675897.
 
-#### Of note; The script and data should be kept in different directories and path of data should be specified to run samCRISPR.
+#### Note/ The script and data should be kept in different directories and path of data should be specified to run samCRISPR.
